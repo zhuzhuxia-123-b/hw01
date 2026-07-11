@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎨 ColorAI · 智能图片颜色分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js">
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="app">
+        <!-- 顶部导航 -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">ColorAI</span>
+                <span class="logo-badge">K-Means</span>
+            </div>
+            <div class="header-subtitle">Image Color Intelligence System</div>
+        </header>
+
+        <!-- 主内容 -->
+        <div class="main-grid">
+            <!-- 左侧：图片 + 色板 -->
+            <section class="panel-left">
+                <!-- 上传区域 -->
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">🖼️</div>
+                    <p class="upload-title">点击上传图片</p>
+                    <span class="upload-hint">支持 JPG / PNG</span>
+                    <input type="file" id="fileInput" accept="image/*" />
+                </div>
+
+                <!-- 图片预览 -->
+                <div class="image-box" id="imageBox">
+                    <img id="preview" style="display:none;" alt="预览" />
+                    <canvas id="canvas" style="display:none;"></canvas>
+                    <span class="placeholder" id="placeholder">⬆️ 请上传图片</span>
+                </div>
+
+                <!-- 统计卡片 -->
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <div class="stat-label">图片尺寸</div>
+                        <div class="stat-value" id="statSize">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">像素数量</div>
+                        <div class="stat-value" id="statPixels">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">聚类 K</div>
+                        <div class="stat-value" id="statK">3</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">颜色空间</div>
+                        <div class="stat-value" id="statSpace">RGB</div>
+                    </div>
+                </div>
+
+                <!-- 分析摘要卡片 -->
+                <div class="summary-card" id="summaryCard">
+                    <div class="summary-header">
+                        <span class="summary-icon">📊</span>
+                        <span class="summary-title">分析摘要</span>
+                        <span class="summary-status" id="summaryStatus">✅ 分析完成</span>
+                    </div>
+                    <div class="summary-grid">
+                        <div class="summary-item">
+                            <span class="summary-label">图片尺寸</span>
+                            <span class="summary-value" id="summarySize">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">像素数量</span>
+                            <span class="summary-value" id="summaryPixels">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">聚类数量</span>
+                            <span class="summary-value" id="summaryK">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">颜色空间</span>
+                            <span class="summary-value" id="summarySpace">-</span>
+                        </div>
+                    </div>
+                    <div class="summary-colors">
+                        <span class="summary-label">主要颜色</span>
+                        <span id="summaryColors"></span>
+                    </div>
+                </div>
+
+                <!-- 色板 -->
+                <div class="palette" id="palette">
+                    <span class="empty">上传图片后，色板将在此显示</span>
+                </div>
+            </section>
+
+            <!-- 右侧：控制 + 图表 + AI -->
+            <section class="panel-right">
+                <!-- 控制面板 -->
+                <div class="control-card">
+                    <div class="control-group">
+                        <label>
+                            <span>聚类数量 <strong>K</strong></span>
+                            <span class="badge" id="kValue">3</span>
+                        </label>
+                        <input type="range" id="kSlider" min="2" max="8" value="3" step="1" />
+                    </div>
+
+                    <div class="control-group">
+                        <label>📊 图表样式</label>
+                        <div class="btn-group">
+                            <button class="btn btn-chart active" data-type="bar">柱状</button>
+                            <button class="btn btn-chart" data-type="pie">饼图</button>
+                            <button class="btn btn-chart" data-type="rose">玫瑰</button>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label>🎯 颜色空间</label>
+                        <div class="btn-group">
+                            <button class="btn btn-space active" data-space="rgb">RGB</button>
+                            <button class="btn btn-space" data-space="lab">LAB</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI 区域 -->
+                <div class="ai-card">
+                    <div class="ai-header">
+                        <span class="ai-icon">🤖</span>
+                        <span class="ai-title">AI Color Advisor</span>
+                    </div>
+                    <input type="password" id="apiKey" placeholder="sk-... (SiliconFlow)" />
+                    <button class="btn-ai" id="aiBtn">分析颜色和谐度</button>
+                    <div class="ai-result" id="aiResult">💡 点击按钮获取 AI 色彩评价</div>
+                </div>
+
+                <!-- 图表 -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <span class="chart-title">📊 颜色分布分析</span>
+                    </div>
+                    <div id="chart"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
