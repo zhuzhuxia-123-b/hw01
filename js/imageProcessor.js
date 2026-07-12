@@ -84,18 +84,15 @@ export function samplePixels(pixels, maxSamples = 8000) {
     return result;
 }
 
-// ===============================
-// 颜色空间转换（保留原有逻辑）
-// ===============================
+// 颜色空间转换
 export function convertColorSpace(pixels, target) {
     if (target === 'rgb') return pixels.map(p => [...p]);
     if (target === 'lab') return pixels.map(([r, g, b]) => rgbToLab(r, g, b));
     return pixels;
 }
 
-// ===============================
-// 中心点转回RGB（保留原有逻辑）
-// ===============================
+
+// 中心点转回RGB
 export function centersToRGB(centers, space) {
     if (space === 'rgb') return centers.map(c => c.map(v => Math.round(v)));
     if (space === 'lab') return centers.map(([l, a, b]) => labToRgb(l, a, b));

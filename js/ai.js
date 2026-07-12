@@ -1,7 +1,7 @@
 import { CONFIG } from './config.js';
 import { rgbToHex } from './utils.js';
 
-// 清洗 JSON（后备）
+// 清洗 JSON
 function cleanJsonString(str) {
     const first = str.indexOf('{');
     const last = str.lastIndexOf('}');
@@ -22,7 +22,6 @@ function cleanJsonString(str) {
     }
 }
 
-// 生成模拟结果（降级用）
 function generateMock(centroids, counts) {
     const total = counts.reduce((a, b) => a + b, 0) || 1;
     const colorInfo = centroids.map((c, i) => {

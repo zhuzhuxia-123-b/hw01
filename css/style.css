@@ -1,7 +1,3 @@
-/* ============================================================
-   ColorAI · 深色专业面板 · 蓝紫渐变背景
-   ============================================================ */
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
@@ -17,7 +13,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 24px;
-    /* ===== 渐变背景 ===== */
+    /*渐变背景*/
     background: #0B0B1A;
     background-image: 
         radial-gradient(ellipse at 20% 20%, #1A1A4E 0%, transparent 45%),
@@ -59,9 +55,7 @@ body {
     background: rgba(79, 70, 229, 0.5);
 }
 
-/* ============================================================
-   顶部导航
-   ============================================================ */
+/* 顶部导航*/
 .header {
     display: flex;
     align-items: center;
@@ -160,9 +154,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* ============================================================
-   Dashboard 主体
-   ============================================================ */
+/* Dashboard 主体 */
 .dashboard {
     display: flex;
     gap: 20px;
@@ -171,9 +163,7 @@ body {
     overflow: hidden;
 }
 
-/* ============================================================
-   左侧边栏
-   ============================================================ */
+/* 左侧边栏*/
 .sidebar {
     width: 300px;
     min-width: 300px;
@@ -184,7 +174,7 @@ body {
     padding-right: 4px;
 }
 
-/* ----- 通用卡片样式 ----- */
+/*通用卡片样式 */
 .upload-card,
 .preview-card,
 .info-card,
@@ -214,7 +204,7 @@ body {
     margin-bottom: 10px;
 }
 
-/* ----- 上传卡片 ----- */
+/*  上传卡片 */
 .upload-area {
     text-align: center;
     cursor: pointer;
@@ -251,7 +241,7 @@ body {
     display: none;
 }
 
-/* ----- 预览卡片 ----- */
+/*  预览卡片  */
 .image-box {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 12px;
@@ -279,7 +269,7 @@ body {
     font-size: 13px;
 }
 
-/* ----- 信息卡片 ----- */
+/* 信息卡片  */
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -309,7 +299,7 @@ body {
     margin-top: 1px;
 }
 
-/* ----- 摘要卡片 ----- */
+/*  摘要卡片  */
 .summary-card {
     flex-shrink: 0;
 }
@@ -384,9 +374,7 @@ body {
     color: #E2E8F0 !important;
 }
 
-/* ============================================================
-   右侧工作区
-   ============================================================ */
+/* 右侧工作区 */
 .workspace {
     flex: 1;
     display: flex;
@@ -397,7 +385,7 @@ body {
     min-height: 0;
 }
 
-/* ----- 工作区通用卡片 ----- */
+/*  工作区通用卡片  */
 .settings-card,
 .palette-card,
 .chart-card,
@@ -418,7 +406,7 @@ body {
     background: rgba(255, 255, 255, 0.04);
 }
 
-/* ----- 卡片头部 ----- */
+/*  卡片头部  */
 .card-header {
     display: flex;
     align-items: center;
@@ -449,7 +437,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-/* ----- 设置卡片 ----- */
+/*  设置卡片  */
 .settings-body {
     display: flex;
     flex-direction: column;
@@ -484,7 +472,7 @@ body {
     border: 1px solid rgba(79, 70, 229, 0.08);
 }
 
-/* ----- 滑块 ----- */
+/*  滑块 */
 input[type="range"] {
     width: 100%;
     height: 4px;
@@ -523,7 +511,7 @@ input[type="range"]::-moz-range-thumb {
     box-shadow: 0 0 30px rgba(79, 70, 229, 0.15);
 }
 
-/* ----- 按钮组 ----- */
+/*  按钮组  */
 .btn-group {
     display: flex;
     gap: 6px;
@@ -556,7 +544,7 @@ input[type="range"]::-moz-range-thumb {
     box-shadow: 0 0 20px rgba(79, 70, 229, 0.03);
 }
 
-/* ----- 调色板卡片 ----- */
+/*  调色板卡片  */
 .palette-card .palette {
     display: flex;
     flex-wrap: wrap;
@@ -647,7 +635,7 @@ input[type="range"]::-moz-range-thumb {
     transform: scale(1.04);
 }
 
-/* ----- 图表卡片 ----- */
+/*  图表卡片  */
 .chart-card {
     flex: 0 0 auto;
     height: 320px;
@@ -669,7 +657,7 @@ input[type="range"]::-moz-range-thumb {
     min-height: 0;
 }
 
-/* ----- AI 卡片 ----- */
+/*  AI 卡片  */
 .ai-body {
     display: flex;
     flex-direction: column;
@@ -760,9 +748,7 @@ input[type="range"]::-moz-range-thumb {
     margin-top: 4px;
 }
 
-/* ============================================================
-   底部
-   ============================================================ */
+/* 底部 */
 .footer {
     margin-top: 18px;
     padding-top: 14px;
@@ -774,9 +760,7 @@ input[type="range"]::-moz-range-thumb {
     flex-shrink: 0;
 }
 
-/* ============================================================
-   响应式
-   ============================================================ */
+/* 响应式 */
 @media (max-width: 1200px) {
     .sidebar {
         width: 270px;

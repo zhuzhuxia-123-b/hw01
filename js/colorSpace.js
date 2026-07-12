@@ -1,4 +1,4 @@
-// Gamma 校正
+// Gamma
 function gamma(c) {
     c = c / 255;
     return c > 0.04045 ? Math.pow((c + 0.055) / 1.055, 2.4) : c / 12.92;
@@ -7,7 +7,7 @@ function gammaInv(c) {
     return c > 0.0031308 ? 1.055 * Math.pow(c, 1 / 2.4) - 0.055 : 12.92 * c;
 }
 
-// RGB -> LAB (D65)
+// RGB -> LAB 
 export function rgbToLab(r, g, b) {
     let [R, G, B] = [gamma(r), gamma(g), gamma(b)];
     let X = R * 0.4124564 + G * 0.3575761 + B * 0.1804375;

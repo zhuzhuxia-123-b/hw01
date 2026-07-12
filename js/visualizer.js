@@ -9,7 +9,7 @@ export function initVisualizer(canvasEl) {
 
 export function drawOriginal(image, state) {
     if (!ctx) return;
-    // 使用缩放后的尺寸（与 state.pixels 一致）
+    // 使用缩放后的尺寸
     const w = state.width || image.width;
     const h = state.height || image.height;
     canvas.width = w;
