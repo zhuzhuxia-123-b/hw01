@@ -9,9 +9,13 @@ export function initVisualizer(canvasEl) {
 
 export function drawOriginal(image, state) {
     if (!ctx) return;
-    canvas.width = image.width;
-    canvas.height = image.height;
-    ctx.drawImage(image, 0, 0);
+    // 使用缩放后的尺寸（与 state.pixels 一致）
+    const w = state.width || image.width;
+    const h = state.height || image.height;
+    canvas.width = w;
+    canvas.height = h;
+    // 缩放绘制图片到 canvas
+    ctx.drawImage(image, 0, 0, w, h);
     canvasData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     state.canvasData = canvasData;
 }
@@ -26,6 +30,7 @@ export function highlightCluster(label, state) {
     );
     const d = imgData.data;
     const canvasPixels = canvasData.width * canvasData.height;
+    // 取 labels 和 canvas 像素数的较小值
     const limit = Math.min(totalPixels, canvasPixels);
     for (let i = 0; i < limit; i++) {
         const idx = i * 4;
